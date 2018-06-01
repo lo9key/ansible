@@ -1,16 +1,64 @@
+ansible-playbook 2.4.2.0
+  config file = /root/CS312/oneip/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Aug  4 2017, 00:39:18) [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Using /root/CS312/oneip/ansible.cfg as config file
+Parsed /root/CS312/oneip/hosts.ini inventory source with ini plugin
+
+PLAYBOOK: playbook *************************************************************
+2 plays in playbook
 
 PLAY [hive] ********************************************************************
+META: ran handlers
 
 TASK [Stop all containers] *****************************************************
-changed: [myhive]
+task path: /root/CS312/oneip/playbook:7
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-lkbtsabjqgybjvvkrwozcyjwcpsheeyi; docker rm $(docker ps -aq) -f'"'"''
+<192.168.1.13> (0, '46101b3a95ee\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [myhive] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "46101b3a95ee\r\n", 
+    "stdout_lines": [
+        "46101b3a95ee"
+    ]
+}
 
 TASK [Start up node0] **********************************************************
-changed: [myhive]
+task path: /root/CS312/oneip/playbook:9
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-utfuubeiorprwqznrihdkuxnixrqnxkh; docker run -d --rm -p 5100:22 willmetl/cs312hw7_node'"'"''
+<192.168.1.13> (0, '59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [myhive] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4\r\n", 
+    "stdout_lines": [
+        "59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4"
+    ]
+}
+META: ran handlers
+META: ran handlers
 
 PLAY [nodes] *******************************************************************
+META: ran handlers
 
 TASK [create a file] ***********************************************************
-fatal: [node0]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.1.13 port 5100: Connection refused\r\n", "unreachable": true}
+task path: /root/CS312/oneip/playbook:16
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=5100 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/3be451976b 192.168.1.13 '/bin/sh -c '"'"'echo ~ && sleep 0'"'"''
+<192.168.1.13> (255, '', 'ssh: connect to host 192.168.1.13 port 5100: Connection refused\r\n')
+fatal: [node0]: UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.1.13 port 5100: Connection refused\r\n", 
+    "unreachable": true
+}
 	to retry, use: --limit @/root/CS312/oneip/playbook.retry
 
 PLAY RECAP *********************************************************************
