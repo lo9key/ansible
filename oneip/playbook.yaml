@@ -1,0 +1,27 @@
+---
+- hosts: hive
+  gather_facts: no
+  become: true
+  ignore_errors: yes
+  tasks:
+    - name: Stop all containers
+      raw: docker rm $(docker ps -aq) -f
+    - name: Start up node0 
+      raw: docker run -d --rm -p 122:22 willmetl/cs312hw7_node
+
+- hosts: nodes
+  gather_facts: no
+  become: true
+  tasks:
+    - name: create a file
+      command: touch /root/happy
+    #- name: Install nodejs on node0
+    #  command: apk add --update nodejs nodejs-npm
+    #- name: Install forever (to run nodejs app)
+    #  npm:
+    #    name=forever
+    #    global=yes
+    #    state=present
+    #- name: Start nodejs app with forever
+    #  command: forever start /server.js
+      
