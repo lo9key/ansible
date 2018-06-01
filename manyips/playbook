@@ -2,21 +2,19 @@
 - hosts: hive
   gather_facts: no
   become: true
-  ignore_errors: yes
+  #ignore_errors: yes
   tasks:
-    - name: Stop all containers
-      raw: docker rm $(docker ps -aq) -f
-    - name: Remove IP for node0
-      raw: ip addr del 192.168.1.100 dev enp0s3
     - name: Add IP for node0
       raw: ip addr add 192.168.1.100 dev enp0s3
     - name: Start up node0 
-      raw: docker run -d --rm -p 192.168.1.100:2222:22 willmetl/cs312hw7_node
+      raw: docker run -d --rm -p 192.168.1.100:5100:22 willmetl/cs312hw7_node
 
 - hosts: nodes
   gather_facts: no
   become: true
   tasks:
+    - name: Install python3
+      raw: apk -U add python3
     - name: create a file
       command: touch /root/happy
     #- name: Install nodejs on node0

@@ -2,10 +2,18 @@
 - hosts: hive
   gather_facts: no
   become: true
-  ignore_errors: yes
+  #ignore_errors: yes
   tasks:
-    - name: Stop all containers
-      raw: docker rm $(docker ps -aq) -f
+    - name: Install yum-utils
+      raw: yum install -y yum-utils devicemapper-persistent-data lvm2
+    - name: Install docker-ce repo
+      raw: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - name: Install docker
+      raw: yum install -y docker-ce
+    - name: Start docker
+      raw: systemctl start docker
+    - name: Enable docker
+      raw: systemctl enable docker
     - name: Start up node0 
       raw: docker run -d --rm -p 5100:22 willmetl/cs312hw7_node
 
