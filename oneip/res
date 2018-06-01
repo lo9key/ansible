@@ -1,0 +1,60 @@
+ansible-playbook 2.4.2.0
+  config file = /root/CS312/oneip/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Aug  4 2017, 00:39:18) [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Using /root/CS312/oneip/ansible.cfg as config file
+  File "/usr/lib/python2.7/site-packages/ansible/plugins/inventory/ini.py", line 133, in parse
+    self._parse(path, data)
+  File "/usr/lib/python2.7/site-packages/ansible/plugins/inventory/ini.py", line 206, in _parse
+    hosts, port, variables = self._parse_host_definition(line)
+  File "/usr/lib/python2.7/site-packages/ansible/plugins/inventory/ini.py", line 304, in _parse_host_definition
+    self._raise_error("Expected key=value host variable assignment, got: %s" % (t))
+  File "/usr/lib/python2.7/site-packages/ansible/plugins/inventory/ini.py", line 138, in _raise_error
+    raise AnsibleError("%s:%d: " % (self._filename, self.lineno) + message)
+
+PLAYBOOK: playbook.yaml ********************************************************
+2 plays in playbook.yaml
+
+PLAY [hive] ********************************************************************
+META: ran handlers
+
+TASK [Stop all containers] *****************************************************
+task path: /root/CS312/oneip/playbook.yaml:7
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-pgqogxwkqeyclwxrydzltyhsuglzjnsb; docker rm $(docker ps -aq) -f'"'"''
+<192.168.1.13> (0, '1170ec3657d4\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [hive] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "1170ec3657d4\r\n", 
+    "stdout_lines": [
+        "1170ec3657d4"
+    ]
+}
+
+TASK [Start up node0] **********************************************************
+task path: /root/CS312/oneip/playbook.yaml:9
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-dcvbcuvthbzhvghmpsevgsvmddssvdhi; docker run -d --rm -p 122:22 willmetl/cs312hw7_node'"'"''
+<192.168.1.13> (0, '8ab19ed534349bb3e4b673d8060c351544f366a0bb3ef5d2fc4340bc4b21fd01\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [hive] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "8ab19ed534349bb3e4b673d8060c351544f366a0bb3ef5d2fc4340bc4b21fd01\r\n", 
+    "stdout_lines": [
+        "8ab19ed534349bb3e4b673d8060c351544f366a0bb3ef5d2fc4340bc4b21fd01"
+    ]
+}
+META: ran handlers
+META: ran handlers
+
+PLAY [nodes] *******************************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+hive                       : ok=2    changed=2    unreachable=0    failed=0   
+
