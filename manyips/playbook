@@ -11,7 +11,7 @@
     - name: Add IP for node0
       raw: ip addr add 192.168.1.100 dev enp0s3
     - name: Start up node0 
-      raw: docker run -d --rm -p 192.168.1.100:5555:22 willmetl/cs312hw7_node
+      raw: docker run -d --rm -p 192.168.1.100:2222:22 willmetl/cs312hw7_node
 
 - hosts: nodes
   gather_facts: no

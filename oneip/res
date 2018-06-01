@@ -16,30 +16,30 @@ META: ran handlers
 TASK [Stop all containers] *****************************************************
 task path: /root/CS312/oneip/playbook:7
 <192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
-<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-lkbtsabjqgybjvvkrwozcyjwcpsheeyi; docker rm $(docker ps -aq) -f'"'"''
-<192.168.1.13> (0, '46101b3a95ee\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-bggijxxjrjhhpjkpvuoupeuwgcjsqgur; docker rm $(docker ps -aq) -f'"'"''
+<192.168.1.13> (0, '5a0bd50842e6\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
 changed: [myhive] => {
     "changed": true, 
     "rc": 0, 
     "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
-    "stdout": "46101b3a95ee\r\n", 
+    "stdout": "5a0bd50842e6\r\n", 
     "stdout_lines": [
-        "46101b3a95ee"
+        "5a0bd50842e6"
     ]
 }
 
 TASK [Start up node0] **********************************************************
 task path: /root/CS312/oneip/playbook:9
 <192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: None
-<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-utfuubeiorprwqznrihdkuxnixrqnxkh; docker run -d --rm -p 5100:22 willmetl/cs312hw7_node'"'"''
-<192.168.1.13> (0, '59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/5bc31eb2a7 -tt 192.168.1.13 'sudo -H -S -n -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-kxeheecuqrqbidlxtytiozlnlzkifdsg; docker run -d --rm -p 5100:22 willmetl/cs312hw7_node'"'"''
+<192.168.1.13> (0, 'e1629ac228477b55fb8c87451d99eac716be3dbb46084dbc0c7d3dc7fadf6a25\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
 changed: [myhive] => {
     "changed": true, 
     "rc": 0, 
     "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
-    "stdout": "59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4\r\n", 
+    "stdout": "e1629ac228477b55fb8c87451d99eac716be3dbb46084dbc0c7d3dc7fadf6a25\r\n", 
     "stdout_lines": [
-        "59a96a6638310a1880912a1e51a01d8d9fdcb6e2527be218c0066eb23fcebbe4"
+        "e1629ac228477b55fb8c87451d99eac716be3dbb46084dbc0c7d3dc7fadf6a25"
     ]
 }
 META: ran handlers

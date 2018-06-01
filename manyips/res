@@ -1,0 +1,105 @@
+ansible-playbook 2.4.2.0
+  config file = /root/CS312/manyips/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible-playbook
+  python version = 2.7.5 (default, Aug  4 2017, 00:39:18) [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Using /root/CS312/manyips/ansible.cfg as config file
+Parsed /root/CS312/manyips/hosts.ini inventory source with ini plugin
+
+PLAYBOOK: playbook *************************************************************
+2 plays in playbook
+
+PLAY [hive] ********************************************************************
+META: ran handlers
+
+TASK [Stop all containers] *****************************************************
+task path: /root/CS312/manyips/playbook:7
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: root
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=root -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/3726a3f391 -tt 192.168.1.13 'docker rm $(docker ps -aq) -f'
+<192.168.1.13> (1, '"docker rm" requires at least 1 argument.\r\nSee \'docker rm --help\'.\r\n\r\nUsage:  docker rm [OPTIONS] CONTAINER [CONTAINER...] [flags]\r\n\r\nRemove one or more containers\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+fatal: [192.168.1.13]: FAILED! => {
+    "changed": true, 
+    "msg": "non-zero return code", 
+    "rc": 1, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "\"docker rm\" requires at least 1 argument.\r\nSee 'docker rm --help'.\r\n\r\nUsage:  docker rm [OPTIONS] CONTAINER [CONTAINER...] [flags]\r\n\r\nRemove one or more containers\r\n", 
+    "stdout_lines": [
+        "\"docker rm\" requires at least 1 argument.", 
+        "See 'docker rm --help'.", 
+        "", 
+        "Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...] [flags]", 
+        "", 
+        "Remove one or more containers"
+    ]
+}
+...ignoring
+
+TASK [Remove IP for node0] *****************************************************
+task path: /root/CS312/manyips/playbook:9
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: root
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=root -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/3726a3f391 -tt 192.168.1.13 'ip addr del 192.168.1.100 dev enp0s3'
+<192.168.1.13> (0, 'Warning: Executing wildcard deletion to stay compatible with old scripts.\r\n         Explicitly specify the prefix length (192.168.1.100/32) to avoid this warning.\r\n         This special behaviour is likely to disappear in further releases,\r\n         fix your scripts!\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [192.168.1.13] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "Warning: Executing wildcard deletion to stay compatible with old scripts.\r\n         Explicitly specify the prefix length (192.168.1.100/32) to avoid this warning.\r\n         This special behaviour is likely to disappear in further releases,\r\n         fix your scripts!\r\n", 
+    "stdout_lines": [
+        "Warning: Executing wildcard deletion to stay compatible with old scripts.", 
+        "         Explicitly specify the prefix length (192.168.1.100/32) to avoid this warning.", 
+        "         This special behaviour is likely to disappear in further releases,", 
+        "         fix your scripts!"
+    ]
+}
+
+TASK [Add IP for node0] ********************************************************
+task path: /root/CS312/manyips/playbook:11
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: root
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=root -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/3726a3f391 -tt 192.168.1.13 'ip addr add 192.168.1.100 dev enp0s3'
+<192.168.1.13> (0, '', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [192.168.1.13] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "", 
+    "stdout_lines": []
+}
+
+TASK [Start up node0] **********************************************************
+task path: /root/CS312/manyips/playbook:13
+<192.168.1.13> ESTABLISH SSH CONNECTION FOR USER: root
+<192.168.1.13> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=22 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=root -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/3726a3f391 -tt 192.168.1.13 'docker run -d --rm -p 192.168.1.100:2222:22 willmetl/cs312hw7_node'
+<192.168.1.13> (0, '5a0bd50842e6bff6b005203babd66526633567f2c96dac774894c4abf68dc156\r\n', 'Shared connection to 192.168.1.13 closed.\r\n')
+changed: [192.168.1.13] => {
+    "changed": true, 
+    "rc": 0, 
+    "stderr": "Shared connection to 192.168.1.13 closed.\r\n", 
+    "stdout": "5a0bd50842e6bff6b005203babd66526633567f2c96dac774894c4abf68dc156\r\n", 
+    "stdout_lines": [
+        "5a0bd50842e6bff6b005203babd66526633567f2c96dac774894c4abf68dc156"
+    ]
+}
+META: ran handlers
+META: ran handlers
+
+PLAY [nodes] *******************************************************************
+META: ran handlers
+
+TASK [create a file] ***********************************************************
+task path: /root/CS312/manyips/playbook:20
+Using module file /usr/lib/python2.7/site-packages/ansible/modules/commands/command.py
+<192.168.1.100> ESTABLISH SSH CONNECTION FOR USER: root
+<192.168.1.100> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o Port=2222 -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=root -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/1dc614808b 192.168.1.100 '/bin/sh -c '"'"'echo ~ && sleep 0'"'"''
+<192.168.1.100> (255, '', 'ssh: connect to host 192.168.1.100 port 2222: Connection refused\r\n')
+fatal: [192.168.1.100]: UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.1.100 port 2222: Connection refused\r\n", 
+    "unreachable": true
+}
+	to retry, use: --limit @/root/CS312/manyips/playbook.retry
+
+PLAY RECAP *********************************************************************
+192.168.1.100              : ok=0    changed=0    unreachable=1    failed=0   
+192.168.1.13               : ok=4    changed=4    unreachable=0    failed=0   
+
