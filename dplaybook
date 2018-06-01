@@ -1,0 +1,15 @@
+---
+- name: Create 10 Docker containers on Hive
+  hosts: hive
+  gather_facts: no
+  become: true
+  #ignore_errors: yes
+  -name: Start node0
+    docker_container:
+      name: node0
+      image: willmetl/cs312hw7_node
+      state: started
+      ports:
+        - "180:80"
+        - "120:20"
+      command: apk -U add nodejs
