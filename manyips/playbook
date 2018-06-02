@@ -6,8 +6,56 @@
   tasks:
     - name: Add IP for node0
       raw: ip addr add 192.168.1.100 dev enp0s3
-    - name: Start up node0 
+    - name: Start up node0
       raw: docker run -d --rm -p 192.168.1.100:5100:22 -p 192.168.1.100:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node1
+      raw: ip addr add 192.168.1.101 dev enp0s3
+    - name: Start up node1
+      raw: docker run -d --rm -p 192.168.1.101:5100:22 -p 192.168.1.101:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node2
+      raw: ip addr add 192.168.1.102 dev enp0s3
+    - name: Start up node2
+      raw: docker run -d --rm -p 192.168.1.102:5100:22 -p 192.168.1.102:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node3
+      raw: ip addr add 192.168.1.103 dev enp0s3
+    - name: Start up node3
+      raw: docker run -d --rm -p 192.168.1.103:5100:22 -p 192.168.1.103:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node4
+      raw: ip addr add 192.168.1.104 dev enp0s3
+    - name: Start up node4
+      raw: docker run -d --rm -p 192.168.1.104:5100:22 -p 192.168.1.104:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node5
+      raw: ip addr add 192.168.1.105 dev enp0s3
+    - name: Start up node5
+      raw: docker run -d --rm -p 192.168.1.105:5100:22 -p 192.168.1.105:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node6
+      raw: ip addr add 192.168.1.106 dev enp0s3
+    - name: Start up node6
+      raw: docker run -d --rm -p 192.168.1.106:5100:22 -p 192.168.1.106:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node7
+      raw: ip addr add 192.168.1.107 dev enp0s3
+    - name: Start up node7
+      raw: docker run -d --rm -p 192.168.1.107:5100:22 -p 192.168.1.107:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node8
+      raw: ip addr add 192.168.1.108 dev enp0s3
+    - name: Start up node8
+      raw: docker run -d --rm -p 192.168.1.108:5100:22 -p 192.168.1.108:80:80 willmetl/cs312hw7_node
+
+    - name: Add IP for node9
+      raw: ip addr add 192.168.1.109 dev enp0s3
+    - name: Start up node9
+      raw: docker run -d --rm -p 192.168.1.109:5100:22 -p 192.168.1.109:80:80 willmetl/cs312hw7_node
+
+
+
 
 - hosts: nodes
   gather_facts: no
