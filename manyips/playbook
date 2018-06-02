@@ -7,7 +7,7 @@
     - name: Add IP for node0
       raw: ip addr add 192.168.1.100 dev enp0s3
     - name: Start up node0 
-      raw: docker run -d --rm -p 192.168.1.100:5100:22 willmetl/cs312hw7_node
+      raw: docker run -d --rm -p 192.168.1.100:5100:22 -p 192.168.1.100:80:80 willmetl/cs312hw7_node
 
 - hosts: nodes
   gather_facts: no
@@ -15,15 +15,21 @@
   tasks:
     - name: Install python3
       raw: apk -U add python3
-    - name: create a file
-      command: touch /root/happy
-    #- name: Install nodejs on node0
-    #  command: apk add --update nodejs nodejs-npm
-    #- name: Install forever (to run nodejs app)
-    #  npm:
-    #    name=forever
-    #    global=yes
-    #    state=present
-    #- name: Start nodejs app with forever
-    #  command: forever start /server.js
+    - name: Install nodejs
+      command: apk add nodejs
+    - name: Install forever (to run nodejs app)
+      npm:
+        name=forever
+        global=yes
+        state=present
+    - name: Copy server.js to container
+      template:
+        src: server.js
+        dest: /server.js
+    - name: Copy index.html to container
+      template:
+        src: index.html
+        dest: /index.html
+    - name: Start nodejs app with forever
+      command: forever start /server.js
       
